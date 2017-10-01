@@ -458,14 +458,14 @@
   #define DELTA_RADIUS (DELTA_SMOOTH_ROD_OFFSET-(DELTA_EFFECTOR_OFFSET)-(DELTA_CARRIAGE_OFFSET))
 
   // Print surface diameter/2 minus unreachable space (avoid collisions with vertical towers).
-  #define DELTA_PRINTABLE_RADIUS 116
+  #define DELTA_PRINTABLE_RADIUS 116.0
 
   // Delta calibration menu
   // uncomment to add three points calibration menu option.
   // See http://minow.blogspot.com/index.html#4918805519571907051
   // If needed, adjust the X, Y, Z calibration coordinates
   // in ultralcd.cpp@lcd_delta_calibrate_menu()
-  //#define DELTA_CALIBRATION_MENU
+  #define DELTA_CALIBRATION_MENU
 
   // After homing move down to a height where XY movement is unconstrained
  // #define DELTA_HOME_TO_SAFE_ZONE
@@ -817,8 +817,8 @@
 // @section machine
 
 // Travel limits after homing (units are in mm)
-#define X_MIN_POS -(DELTA_PRINTABLE_RADIUS)
-#define Y_MIN_POS -(DELTA_PRINTABLE_RADIUS)
+#define X_MIN_POS (-DELTA_PRINTABLE_RADIUS)
+#define Y_MIN_POS (-DELTA_PRINTABLE_RADIUS)
 #define Z_MIN_POS 0
 #define X_MAX_POS DELTA_PRINTABLE_RADIUS
 #define Y_MAX_POS DELTA_PRINTABLE_RADIUS
@@ -915,10 +915,10 @@
   #define ABL_GRID_POINTS_Y ABL_GRID_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
-  #define DELTA_PROBEABLE_RADIUS (DELTA_PRINTABLE_RADIUS - 50)
-  #define LEFT_PROBE_BED_POSITION -(DELTA_PROBEABLE_RADIUS)
+  #define DELTA_PROBEABLE_RADIUS (DELTA_PRINTABLE_RADIUS - 50.0)
+  #define LEFT_PROBE_BED_POSITION (-DELTA_PROBEABLE_RADIUS)
   #define RIGHT_PROBE_BED_POSITION DELTA_PROBEABLE_RADIUS
-  #define FRONT_PROBE_BED_POSITION -(DELTA_PROBEABLE_RADIUS)
+  #define FRONT_PROBE_BED_POSITION (-DELTA_PROBEABLE_RADIUS)
   #define BACK_PROBE_BED_POSITION DELTA_PROBEABLE_RADIUS
 
   // The Z probe minimum outer margin (to validate G29 parameters).
@@ -950,12 +950,12 @@
 
   // 3 arbitrary points to probe.
   // A simple cross-product is used to estimate the plane of the bed.
-  #define ABL_PROBE_PT_1_X 15
-  #define ABL_PROBE_PT_1_Y 180
-  #define ABL_PROBE_PT_2_X 15
-  #define ABL_PROBE_PT_2_Y 20
-  #define ABL_PROBE_PT_3_X 170
-  #define ABL_PROBE_PT_3_Y 20
+  #define ABL_PROBE_PT_1_X -90
+  #define ABL_PROBE_PT_1_Y -50
+  #define ABL_PROBE_PT_2_X 90
+  #define ABL_PROBE_PT_2_Y -50
+  #define ABL_PROBE_PT_3_X 0
+  #define ABL_PROBE_PT_3_Y 100
 
 #endif
 
@@ -973,8 +973,8 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
+#define MANUAL_X_HOME_POS 0
+#define MANUAL_Y_HOME_POS 0
 #define MANUAL_Z_HOME_POS 292.4 // Distance between the nozzle to printbed after homing
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
